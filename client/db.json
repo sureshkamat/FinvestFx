@@ -1,12 +1,12 @@
 {
-  "data": [
+  "data":[
     {
       "id": 0,
       "name": "Uthappizza",
       "image": "https://i.imgur.com/tDnjTXf.jpg",
       "category": "mains",
       "label": "Hot",
-      "price": "40",
+      "price": "4.99",
       "description": "A unique combination of Indian Uthappam (pancake) and Italian pizza"
     },
     {
@@ -15,7 +15,7 @@
       "image": "https://i.imgur.com/xkUElXq.jpg",
       "category": "appetizer",
       "label": "",
-      "price": "10",
+      "price": "1.99",
       "description": "Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce"
     },
     {
@@ -42,7 +42,7 @@
       "image": "https://i.imgur.com/Vc9JIXP.jpg",
       "category": "appetizer",
       "label": "Spicy",
-      "price": "18",
+      "price": "0.99",
       "description": "Assorted chillies from Guntur"
     },
     {
@@ -60,7 +60,7 @@
       "image": "https://i.imgur.com/fRy8hjE.jpg",
       "category": "clone",
       "label": "clone",
-      "price": "19.9",
+      "price": "9.99",
       "description": "clone of cherry and tomato"
     },
     {
@@ -69,7 +69,7 @@
       "image": "https://i.imgur.com/zFGPhrI.jpg",
       "category": "weird",
       "label": "weird",
-      "price": "1",
+      "price": "1.99",
       "description": "Medicinal Goat Milk"
     },
     {
@@ -87,7 +87,7 @@
       "image": "https://i.imgur.com/IpG3YOT.jpg",
       "category": "appetizer",
       "label": "weird",
-      "price": "1.99",
+      "price": "0.99",
       "description": "Cooked Toenails of various animals"
     }
   ]

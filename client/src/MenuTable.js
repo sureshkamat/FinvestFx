@@ -22,10 +22,9 @@ const MenuTable = () => {
   const [editedPrice, setEditedPrice] = useState({});
   const [originalMenuData, setOriginalMenuData] = useState([]);
 
-  // Store the initial menu data in localStorage and set it in originalMenuData state
+  
   useEffect(() => {
     const storedOriginalData = localStorage.getItem('originalMenuData');
-
     if (storedOriginalData) {
       setOriginalMenuData(JSON.parse(storedOriginalData));
     } else {
@@ -33,13 +32,10 @@ const MenuTable = () => {
     }
   }, []);
 
-  // Fetch the initial menu data and store it in originalMenuData state and localStorage
   const fetchOriginalData = async () => {
     try {
       const response = await axios.get('http://localhost:3000/data');
       setOriginalMenuData(response.data);
-
-      // Store the original data in localStorage
       localStorage.setItem('originalMenuData', JSON.stringify(response.data));
     } catch (error) {
       console.error('Error fetching original data:', error);

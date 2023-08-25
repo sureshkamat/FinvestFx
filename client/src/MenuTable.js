@@ -18,9 +18,33 @@ const MenuTable = () => {
   const [menuData, setMenuData] = useState([]);
   const [order, setOrder] = useState('');
   const [category, setCategory] = useState();
-  const [oldPrice, setOldPrice] = useState({});
-  const [editedPrice, setEditedPrice] = useState({});
   
+  const [editedPrice, setEditedPrice] = useState({});
+  const [originalMenuData, setOriginalMenuData] = useState([]);
+
+  // Store the initial menu data in localStorage and set it in originalMenuData state
+  useEffect(() => {
+    const storedOriginalData = localStorage.getItem('originalMenuData');
+
+    if (storedOriginalData) {
+      setOriginalMenuData(JSON.parse(storedOriginalData));
+    } else {
+      fetchOriginalData();
+    }
+  }, []);
+
+  // Fetch the initial menu data and store it in originalMenuData state and localStorage
+  const fetchOriginalData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/data');
+      setOriginalMenuData(response.data);
+
+      // Store the original data in localStorage
+      localStorage.setItem('originalMenuData', JSON.stringify(response.data));
+    } catch (error) {
+      console.error('Error fetching original data:', error);
+    }
+  };
 
 
   
@@ -47,17 +71,14 @@ const MenuTable = () => {
   };
 console.log(editedPrice);
 
-const handleOld = (itemId, price) => {
-    setOldPrice({ ...oldPrice, [itemId]: price });
-  };
-  console.log(oldPrice);
+
   const handleSave = async (itemId) => {
     try {
       await axios.patch(`http://localhost:3000/data/${itemId}`, { price: editedPrice[itemId] });
-    //   const updatedEditedPrice = { ...editedPrice };
-    //   delete updatedEditedPrice[itemId];
-    //   setEditedPrice(updatedEditedPrice);
-    //   fetchData();
+      const updatedEditedPrice = { ...editedPrice };
+      delete updatedEditedPrice[itemId];
+      setEditedPrice(updatedEditedPrice);
+      fetchData();
 
     } catch (error) {
       console.error('Error updating price:', error);
@@ -66,8 +87,9 @@ const handleOld = (itemId, price) => {
 
   
   const handleReset = async (itemId) => {
+    const originalPrice = originalMenuData.find((item) => item.id === itemId).price;
     try {
-      await axios.patch(`http://localhost:3000/data/${itemId}`, { price: oldPrice[itemId] });
+      await axios.patch(`http://localhost:3000/data/${itemId}`, { price: originalPrice });
         const updatedEditedPrice = { ...editedPrice };
       delete updatedEditedPrice[itemId];
       setEditedPrice(updatedEditedPrice);
@@ -132,7 +154,7 @@ const handleOld = (itemId, price) => {
                     <Button onClick={() => handleReset(item.id)}>Reset</Button>
                   </>
                 ) : (
-                  <Button onClick={() => {handleOld(item.id, item.price); handleEdit(item.id, item.price) }}>Edit</Button>
+                  <Button onClick={() => {handleEdit(item.id, item.price) }}>Edit</Button>
                 )}
               </Td>
             </Tr>

@@ -15,7 +15,7 @@
       "image": "https://i.imgur.com/xkUElXq.jpg",
       "category": "appetizer",
       "label": "",
-      "price": "1.02",
+      "price": "10",
       "description": "Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce"
     },
     {
@@ -69,7 +69,7 @@
       "image": "https://i.imgur.com/zFGPhrI.jpg",
       "category": "weird",
       "label": "weird",
-      "price": "1.99",
+      "price": "1",
       "description": "Medicinal Goat Milk"
     },
     {

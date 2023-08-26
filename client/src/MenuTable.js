@@ -34,7 +34,7 @@ const MenuTable = () => {
 
   const fetchOriginalData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/data');
+      const response = await axios.get('https://dbjsonlive.onrender.com/data/');
       setOriginalMenuData(response.data);
       localStorage.setItem('originalMenuData', JSON.stringify(response.data));
     } catch (error) {
@@ -51,7 +51,7 @@ const MenuTable = () => {
         _order: order,
         category,
       };
-      const response = await axios.get('http://localhost:3000/data', { params });
+      const response = await axios.get('https://dbjsonlive.onrender.com/data/', { params });
       setMenuData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -70,7 +70,7 @@ console.log(editedPrice);
 
   const handleSave = async (itemId) => {
     try {
-      await axios.patch(`http://localhost:3000/data/${itemId}`, { price: editedPrice[itemId] });
+      await axios.patch(`https://dbjsonlive.onrender.com/data/${itemId}`, { price: editedPrice[itemId] });
       const updatedEditedPrice = { ...editedPrice };
       delete updatedEditedPrice[itemId];
       setEditedPrice(updatedEditedPrice);
@@ -85,7 +85,7 @@ console.log(editedPrice);
   const handleReset = async (itemId) => {
     const originalPrice = originalMenuData.find((item) => item.id === itemId).price;
     try {
-      await axios.patch(`http://localhost:3000/data/${itemId}`, { price: originalPrice });
+      await axios.patch(`https://dbjsonlive.onrender.com/data/${itemId}`, { price: originalPrice });
         const updatedEditedPrice = { ...editedPrice };
       delete updatedEditedPrice[itemId];
       setEditedPrice(updatedEditedPrice);
